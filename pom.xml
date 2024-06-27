@@ -16,8 +16,8 @@
         <aspectj.version>1.9.22</aspectj.version>
         <allure.version>2.27.0</allure.version>
         <slf4j.version>2.0.13</slf4j.version>
-        <lombok.version>1.18.32</lombok.version>
         <commons-lang3.version>3.12.0</commons-lang3.version>
+        <config.version>1.4.3</config.version>
         <allure-junit5.version>2.27.0</allure-junit5.version>
         <maven.surefire.plugin.version>3.2.5</maven.surefire.plugin.version>
         <allure.maven.plugin.version>2.10.0</allure.maven.plugin.version>
@@ -55,11 +55,11 @@
         </dependency>
 
         <!-- WebDriveManager -->
-<!--        <dependency>-->
-<!--            <groupId>io.github.bonigarcia</groupId>-->
-<!--            <artifactId>webdrivermanager</artifactId>-->
-<!--            <version>5.9.1</version>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>io.github.bonigarcia</groupId>-->
+        <!--            <artifactId>webdrivermanager</artifactId>-->
+        <!--            <version>5.9.1</version>-->
+        <!--        </dependency>-->
 
         <!-- Logging Dependencies -->
         <dependency>
@@ -71,14 +71,6 @@
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>${commons-io.version}</version>
-        </dependency>
-
-        <!-- Lombok -->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>${lombok.version}</version>
-            <scope>provided</scope>
         </dependency>
 
         <!-- Test Dependencies -->
@@ -113,6 +105,13 @@
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>
             <version>${commons-codec.version}</version>
+        </dependency>
+
+        <!-- Typesafe Config -->
+        <dependency>
+            <groupId>com.typesafe</groupId>
+            <artifactId>config</artifactId>
+            <version>${config.version}</version>
         </dependency>
 
         <!-- Jackson Dependency -->
