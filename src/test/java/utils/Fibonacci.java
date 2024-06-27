@@ -8,11 +8,7 @@ public class Fibonacci {
         LocalDate today = LocalDate.now();
         int dayOfMonth = today.getDayOfMonth();
         int n = dayOfMonth + 1;
-
-        if (n <= 0) {
-            throw new IllegalArgumentException("N должно быть больше нуля");
-        }
-        if (n == 1 || n == 2) {
+        if (n == 2) {
             return 1;
         }
 

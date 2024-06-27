@@ -14,6 +14,8 @@ public class AccountPage extends BasePage {
 
     @FindBy(css = ".center[ng-hide='noAccount'] .ng-binding:nth-child(2)")
     private WebElement balance;
+    @FindBy(css = "[ng-show='message']")
+    private WebElement message;
 
     @FindBy(css = "[ng-click='deposit()']")
     private WebElement depositButton;
@@ -38,20 +40,22 @@ public class AccountPage extends BasePage {
 
     @Step("Пополнить баланса на {amount}")
     public AccountPage amountDeposited(long amount) {
+        assertEquals(balance.getText(), "0", "Баланс не равен нулю!");
         depositButton.click();
         depositInput.sendKeys(String.valueOf(amount));
         depositSubmit.click();
-
+        assertEquals(message.getText(), "Deposit Successful", "Сумма кошелка неверная после списания!");
         assertEquals(balance.getText(), String.valueOf(amount), "Сумма кошелка неверная после пополнения!");
         return this;
     }
 
     @Step("Списание с баланса на  {amount}")
-    public AccountPage amountWithdrawn(long amount)  {
+    public AccountPage amountWithdrawn(long amount) {
+
         withdrawlButton.click();
         withdrawlInput.sendKeys(String.valueOf(amount));
         withdrawlSubmit.click();
-
+        assertEquals(message.getText(), "Transaction successful", "Сумма кошелка неверная после списания!");
         assertEquals(balance.getText(), "0", "Баланс не равен нулю!");
         return this;
     }
@@ -59,6 +63,7 @@ public class AccountPage extends BasePage {
     @Step("Переход к списку транзакций на балансе")
     public Transaction goToTransactionsList() throws InterruptedException {
         Thread.sleep(Duration.ofSeconds(2));
+        driver.navigate().refresh();
         transactionsButton.click();
         return new Transaction();
     }

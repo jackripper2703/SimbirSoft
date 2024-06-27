@@ -42,3 +42,4 @@ build/
 ### my ignore ###
 .allure
 .allure/
+transactions.csv

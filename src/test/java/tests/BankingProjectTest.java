@@ -26,11 +26,13 @@ public class BankingProjectTest extends BaseTest {
 
         long fibNumber = fibonacci(); // Вычисляем число Фибоначчи
 
-        List<WebElement> transactionsList = mainPage.choosingRoleCustomer()
+        List<WebElement> transactionsList = mainPage
+                .choosingRoleCustomer()
                 .selectUserHarryPotter()
                 .amountDeposited(fibNumber)
                 .amountWithdrawn(fibNumber)
                 .goToTransactionsList()
+                .checkTransactions()
                 .getTransactions();
 
         // Записываем транзакции в CSV файл

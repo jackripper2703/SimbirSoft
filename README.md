@@ -26,12 +26,37 @@
    Формат ТипТранзакции - значение из списка [Credit, Debit]
 10. Оформить сформированный файл как вложение к отчету allure.
 
+### Установка
+Клонируйте репозиторий: 
+```sh
+git clone https://github.com/jackripper2703/SimbirSoft.git
+```
 ### Запуск selenium grid
-1. Переходим в `src/test/resources/selenium` и запускаем hub:\
-`java -jar selenium-server-4.21.0.jar hub --config hubConfig.json`
-2. В новом терминале так же переходим в `src/test/resources/selenium` и запускаем node: \
-`java -jar selenium-server-4.21.0.jar node --config nodeConfig.json`
-3. Откройте браузер и перейдите по адресу http://localhost:4444/grid/console, 
+1. Из корневой папки перейдите в директорию проекта:
+```sh
+cd src/test/resources/selenium
+```
+2. Выполните команду для запуска hub:
+```sh
+java -jar selenium-server-4.21.0.jar hub --config hubConfig.json
+```
+3. Из корневой папки перейдите в директорию проекта:
+```sh
+cd src/test/resources/selenium
+```
+4. Выполните команду для запуска node:
+```sh
+java -jar selenium-server-4.21.0.jar node --config nodeConfig.json
+```
+5. Откройте браузер и перейдите по адресу http://localhost:4444/grid/console, 
 чтобы убедиться, что хаб и узел правильно настроены и работают.
+6. Установите зависимости и запсук тестов:
+```sh
+mvn clean install
+```
+7. После завершения тестов, отчеты Allure можно сгенерировать и открыть с помощью следующих команд:
+```sh
+allure serve target/allure-results
+```
 
 

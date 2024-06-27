@@ -17,7 +17,7 @@ public class AuthPage extends BasePage {
     }
 
     @Step("Вход в аккаунт Harry Potter")
-    public AccountPage selectUserHarryPotter(){
+    public AccountPage selectUserHarryPotter() {
         userSelect.click();
         loginButton.click();
         return new AccountPage();
