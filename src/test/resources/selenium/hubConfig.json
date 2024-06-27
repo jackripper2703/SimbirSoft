@@ -1,0 +1,17 @@
+{
+  "port": 4444,
+  "newSessionWaitTimeout": -1,
+  "servlets": [],
+  "capabilityMatcher": "org.openqa.grid.internal.utils.DefaultCapabilityMatcher",
+  "prioritizer": null,
+  "throwOnCapabilityNotPresent": true,
+  "nodePolling": 5000,
+  "cleanUpCycle": 5000,
+  "timeout": 30000,
+  "maxSession": 5,
+  "unregisterIfStillDownAfter": 60000,
+  "downPollingLimit": 2,
+  "debug": false,
+  "browserTimeout": 0,
+  "jettyMaxThreads": -1
+}
