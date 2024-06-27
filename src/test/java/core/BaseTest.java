@@ -1,4 +1,4 @@
-package tests;
+package core;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -10,9 +10,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
 
-class TestBase {
-
-    WebDriver driver;
+abstract public class BaseTest {
+    protected WebDriver driver;
 
     @BeforeEach
     void setupTest() {
@@ -26,11 +25,13 @@ class TestBase {
 
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+        BasePage.setDriver(driver);
     }
 
     @AfterEach
     void teardown() {
         if (driver != null) {
+            driver.close();
             driver.quit();
         }
     }
