@@ -15,7 +15,7 @@
         <junit.jupiter.version>5.10.2</junit.jupiter.version>
         <aspectj.version>1.9.22</aspectj.version>
         <allure.version>2.27.0</allure.version>
-        <slf4j.version>2.0.13</slf4j.version>
+        <slf4j.version>1.7.36</slf4j.version>
         <commons-lang3.version>3.12.0</commons-lang3.version>
         <config.version>1.4.3</config.version>
         <allure-junit5.version>2.27.0</allure-junit5.version>
@@ -24,7 +24,8 @@
         <commons-io.version>2.11.0</commons-io.version>
         <hamcrest.version>2.2</hamcrest.version>
         <commons-codec.version>1.15</commons-codec.version>
-        <jackson.version>2.17.1</jackson.version> <!-- Добавлено для устранения уязвимостей -->
+        <jackson.version>2.17.1</jackson.version>
+        <webdrivermanager.version>5.9.1</webdrivermanager.version> <!-- Добавлено для автоматического управления драйверами -->
     </properties>
 
     <repositories>
@@ -54,17 +55,22 @@
             <version>4.22.0</version>
         </dependency>
 
-        <!-- WebDriveManager -->
-        <!--        <dependency>-->
-        <!--            <groupId>io.github.bonigarcia</groupId>-->
-        <!--            <artifactId>webdrivermanager</artifactId>-->
-        <!--            <version>5.9.1</version>-->
-        <!--        </dependency>-->
+        <!-- WebDriverManager -->
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>${webdrivermanager.version}</version>
+        </dependency>
 
         <!-- Logging Dependencies -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
             <version>${slf4j.version}</version>
         </dependency>
         <dependency>

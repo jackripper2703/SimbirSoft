@@ -44,7 +44,7 @@ public class AccountPage extends BasePage {
         depositButton.click();
         depositInput.sendKeys(String.valueOf(amount));
         depositSubmit.click();
-        assertEquals(message.getText(), "Deposit Successful", "Сумма кошелка неверная после списания!");
+        assertEquals(message.getText(), "Deposit Successful", "Проблема в сообщении успешного пополнения!");
         assertEquals(balance.getText(), String.valueOf(amount), "Сумма кошелка неверная после пополнения!");
         return this;
     }
@@ -55,7 +55,7 @@ public class AccountPage extends BasePage {
         withdrawlButton.click();
         withdrawlInput.sendKeys(String.valueOf(amount));
         withdrawlSubmit.click();
-        assertEquals(message.getText(), "Transaction successful", "Сумма кошелка неверная после списания!");
+        assertEquals(message.getText(), "Transaction successful", "Проблема в сообщении успешного списания!");
         assertEquals(balance.getText(), "0", "Баланс не равен нулю!");
         return this;
     }
