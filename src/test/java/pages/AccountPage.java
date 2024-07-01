@@ -8,8 +8,6 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.time.Duration;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 public class AccountPage extends BasePage {
 
     @FindBy(css = ".center[ng-hide='noAccount'] .ng-binding:nth-child(2)")
@@ -34,18 +32,19 @@ public class AccountPage extends BasePage {
     @FindBy(css = "[ng-click='transactions()']")
     private WebElement transactionsButton;
 
+    public WebElement getBalance() {
+        return balance;
+    }
+
     public AccountPage() {
         PageFactory.initElements(driver, this);
     }
 
     @Step("Пополнить баланса на {amount}")
     public AccountPage amountDeposited(long amount) {
-        assertEquals(balance.getText(), "0", "Баланс не равен нулю!");
         depositButton.click();
         depositInput.sendKeys(String.valueOf(amount));
         depositSubmit.click();
-        assertEquals(message.getText(), "Deposit Successful", "Проблема в сообщении успешного пополнения!");
-        assertEquals(balance.getText(), String.valueOf(amount), "Сумма кошелка неверная после пополнения!");
         return this;
     }
 
@@ -55,14 +54,12 @@ public class AccountPage extends BasePage {
         withdrawlButton.click();
         withdrawlInput.sendKeys(String.valueOf(amount));
         withdrawlSubmit.click();
-        assertEquals(message.getText(), "Transaction successful", "Проблема в сообщении успешного списания!");
-        assertEquals(balance.getText(), "0", "Баланс не равен нулю!");
         return this;
     }
 
     @Step("Переход к списку транзакций на балансе")
     public Transaction goToTransactionsList() throws InterruptedException {
-        Thread.sleep(Duration.ofSeconds(2));
+        Thread.sleep(Duration.ofSeconds(3));
         driver.navigate().refresh();
         transactionsButton.click();
         return new Transaction();

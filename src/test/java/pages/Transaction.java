@@ -2,13 +2,13 @@ package pages;
 
 import core.BasePage;
 import io.qameta.allure.Step;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class Transaction extends BasePage {
 
@@ -23,15 +23,24 @@ public class Transaction extends BasePage {
         PageFactory.initElements(driver, this); // Инициализация элементов страницы
     }
 
-    @Step("Проверка наличия транзакций")
-    public Transaction checkTransactions() {
-        assertEquals(firstTransaction.getText(), "Credit");
-        assertEquals(thirdTransaction.getText(),  "Debit");
-        return this;
+    public WebElement getThirdTransaction() {
+        return thirdTransaction;
+    }
+
+    public WebElement getFirstTransaction() {
+        return firstTransaction;
     }
 
     @Step("Сбор всех транзакций в список")
-    public List<WebElement> getTransactions() {
-        return transactions;
+    public List<String[]> creatingListTransactions() {
+        List<String[]> listOfArrays = new ArrayList<>();
+        for (WebElement transaction : transactions) {
+            String[] transactionArray  = new String[3];
+            transactionArray[0] = transaction.findElement(By.cssSelector("td:nth-child(1)")).getText();
+            transactionArray[1] = transaction.findElement(By.cssSelector("td:nth-child(2)")).getText();
+            transactionArray[2] = transaction.findElement(By.cssSelector("td:nth-child(3)")).getText();
+            listOfArrays.add(transactionArray);
+        }
+        return listOfArrays;
     }
 }

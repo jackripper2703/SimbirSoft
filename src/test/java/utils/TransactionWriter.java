@@ -1,8 +1,6 @@
 package utils;
 
 import io.qameta.allure.Allure;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -26,7 +24,7 @@ public class TransactionWriter {
      * @param transactions список веб-элементов, представляющих транзакции
      * @param fileName     имя файла CSV, в который будут записаны транзакции
      */
-    public static void writeTransactionsToCSV(List<WebElement> transactions, String fileName) {
+    public static void writeTransactionsToCSV(List<String[]> transactions, String fileName) {
         // Формирование имени CSV файла
         String csvFile = fileName + ".csv";
 
@@ -35,20 +33,13 @@ public class TransactionWriter {
             writer.write("Дата и время,Сумма,Тип транзакции\n");
 
             // Итерация по списку транзакций
-            for (WebElement transaction : transactions) {
-                WebElement dateTimeElement = transaction.findElement(By.cssSelector("td:nth-child(1)"));
-                WebElement amountElement = transaction.findElement(By.cssSelector("td:nth-child(2)"));
-                WebElement transactionTypeElement = transaction.findElement(By.cssSelector("td:nth-child(3)"));
-
-                String dateTime = dateTimeElement.getText();
-                String amount = amountElement.getText();
-                String transactionType = transactionTypeElement.getText();
+            for (String[] transaction : transactions) {
 
                 // Форматирование даты и времени
-                String formattedDateTime = formatDateTime(dateTime);
+                String formattedDateTime = formatDateTime(transaction[0]);
 
                 // Формирование строки CSV
-                String csvLine = String.format("%s,%s,%s\n", formattedDateTime, amount, transactionType);
+                String csvLine = String.format("%s,%s,%s\n", formattedDateTime, transaction[1], transaction[2]);
                 writer.write(csvLine); // Запись строки в файл
             }
         } catch (IOException e) {

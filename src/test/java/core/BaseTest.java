@@ -23,8 +23,8 @@ abstract public class BaseTest {
             e.printStackTrace();
         }
 
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(20));
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(5));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         BasePage.setDriver(driver);
     }
 
