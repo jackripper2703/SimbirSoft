@@ -8,7 +8,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pages.AccountPage;
 import pages.MainPage;
-import pages.Transaction;
+import pages.TransactionPage;
 import utils.TransactionWriter;
 
 import java.util.List;
@@ -37,10 +37,10 @@ public class BankingProjectTest extends BaseTest {
         AccountPage accountPageWithdraws = accountPageDeposits.amountWithdrawn(fibNumber);
         assertEquals(accountPageWithdraws.getBalance().getText(), "0");
         // Переход на страницу транзакций
-        Transaction transactionPage = accountPage.goToTransactionsList();
+        TransactionPage transactionPage = accountPage.goToTransactionsList();
         // Проверка наличия транзакций
-        assertEquals(transactionPage.getFirstTransaction().getText(), "Debit");
-        assertEquals(transactionPage.getThirdTransaction().getText(), "Credit");
+        assertEquals(transactionPage.getFirstTransaction().getText(), "Credit");
+        assertEquals(transactionPage.getThirdTransaction().getText(), "Debit");
         // Получаем список транзакций и конвертируем его в список массивов строк
         List<String[]> transactionsList = transactionPage.creatingListTransactions();
         // Записываем транзакции в CSV файл

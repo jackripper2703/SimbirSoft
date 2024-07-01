@@ -58,10 +58,10 @@ public class AccountPage extends BasePage {
     }
 
     @Step("Переход к списку транзакций на балансе")
-    public Transaction goToTransactionsList() throws InterruptedException {
+    public TransactionPage goToTransactionsList() throws InterruptedException {
         Thread.sleep(Duration.ofSeconds(3));
         driver.navigate().refresh();
         transactionsButton.click();
-        return new Transaction();
+        return new TransactionPage();
     }
 }

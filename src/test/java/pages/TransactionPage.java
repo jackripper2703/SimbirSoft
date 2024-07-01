@@ -10,7 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Transaction extends BasePage {
+public class TransactionPage extends BasePage {
 
     @FindBy(css = "tr[id*='anchor']")
     private List<WebElement> transactions;
@@ -19,7 +19,11 @@ public class Transaction extends BasePage {
     @FindBy(css = "tbody tr:nth-child(2) td:nth-child(3)")
     private WebElement thirdTransaction;
 
-    public Transaction() {
+    private By dataTime = By.cssSelector("td:nth-child(1)");
+    private By amount  = By.cssSelector("td:nth-child(2)");
+    private By transactionType= By.cssSelector("td:nth-child(3)");
+
+    public TransactionPage() {
         PageFactory.initElements(driver, this); // Инициализация элементов страницы
     }
 
@@ -34,11 +38,14 @@ public class Transaction extends BasePage {
     @Step("Сбор всех транзакций в список")
     public List<String[]> creatingListTransactions() {
         List<String[]> listOfArrays = new ArrayList<>();
+        if (transactions.isEmpty()) {
+            return listOfArrays;
+        }
         for (WebElement transaction : transactions) {
             String[] transactionArray  = new String[3];
-            transactionArray[0] = transaction.findElement(By.cssSelector("td:nth-child(1)")).getText();
-            transactionArray[1] = transaction.findElement(By.cssSelector("td:nth-child(2)")).getText();
-            transactionArray[2] = transaction.findElement(By.cssSelector("td:nth-child(3)")).getText();
+            transactionArray[0] = transaction.findElement(dataTime).getText();
+            transactionArray[1] = transaction.findElement(amount).getText();
+            transactionArray[2] = transaction.findElement(transactionType).getText();
             listOfArrays.add(transactionArray);
         }
         return listOfArrays;
